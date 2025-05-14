@@ -25,7 +25,7 @@ void PID_Init(PIDController_t *pid,
 
 double PID_Compute(PIDController_t *pid,
                    double reference,
-                   double measured_value)
+                   uint16_t measured_value)
 {
     double error = reference - measured_value;
 
@@ -73,7 +73,7 @@ void vPidControllerTask(void *pvParameters)
     PIDController_t pid;
     PID_Init(&pid,  1.0, 0.5, 0.1, 0.1, -10.0, 10.0);
     double reference      = 100.0;
-    double measured_value =  0.0;
+    uint16_t measured_value =  0.0;
     double output = 0.0;
     uint8_t in;
 
@@ -86,14 +86,14 @@ void vPidControllerTask(void *pvParameters)
 
         measured_value += output; // * dt
         uart_print("\r\n measured_value: \r\n");
-        uart_send_double(measured_value); //has to be done before sending output to txqueue,
+        uart_send_16b(measured_value); //has to be done before sending output to txqueue,
                                           // so controller task can yield to txtask
 
 
         //controller input from rxQueue
         if(xQueueReceive(xUartRxQueue, &in, pdMS_TO_TICKS(100))== pdTRUE){ //macro for delay???
-            uart_print("\r\n PID in: \r\n");
-            uart_putc(in);
+            //uart_print("\r\n PID in: \r\n");
+            //uart_putc(in);
             measured_value = in;
         }
 
@@ -101,7 +101,7 @@ void vPidControllerTask(void *pvParameters)
 
         //controller output send through txQueue, and printed in txTask
         if(xQueueSend(xUartTxQueue, &output, pdMS_TO_TICKS(200)) == pdTRUE){  //macro for delay???
-            uart_print("\r\n PID out: \r\n");
+            //uart_print("\r\n PID out: \r\n");
             //uart_putc(output);
         }
 

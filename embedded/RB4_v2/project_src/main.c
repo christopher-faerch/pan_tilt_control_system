@@ -6,6 +6,7 @@
  */
 #include "FreeRTOSConfig.h"
 #include "common.h"
+#include "led_task.h"
 
 
 static void initilization(void)
@@ -44,8 +45,8 @@ int main(void)
        { uart_print("TaskCreate PID_CONTROLLER failed\n"); }
 
 
-        //if (xTaskCreate( vLedTask, "LED_TASK", 200, NULL, Prio_Led, &vLedTaskHandle) != pdPASS)
-        //{ uart_print("TaskCreate LED_TASK failed\n"); }
+        if (xTaskCreate( vStatusTask, "STATUS_LED", 200, NULL, Prio_Led, &vLedTaskHandle) != pdPASS)
+        { uart_print("TaskCreate LED_TASK failed\n"); }
 
         //if (xTaskCreate( vSwitchTask, "SW_TASK", 200, NULL, Prio_Sw, &vSwitchTaskHandle) != pdPASS)
         //{ uart_print("TaskCreate SW_TASK failed\n"); }

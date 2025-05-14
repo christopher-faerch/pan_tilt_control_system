@@ -48,3 +48,16 @@ void vLedTask(void *pvParameters)
     }
 }
 
+void vStatusTask(void *pvParameters)
+{
+    GPIO_PORTF_DATA_R &= ~(0x0E);   // reset LEDs
+
+    for(;;){
+        GPIO_PORTF_DATA_R ^= 0x02; //update to state-specific color
+        //uart_print("Led toggle\n");
+        vTaskDelay( pdMS_TO_TICKS( 500) ); //optimal?
+
+    }
+
+}
+

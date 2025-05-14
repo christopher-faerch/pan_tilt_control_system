@@ -45,12 +45,12 @@
 #include "uart_config.h"
 
 //Priority Defines
-#define Prio_Uart_Tx 4 //HIGH PRIORITY
+#define Prio_Uart_Tx 3 //HIGH PRIORITY
 #define Prio_Controller_Dummy 1
 #define Prio_Pid_Controller 3
 #define Prio_Uart_Rx 3
 
-#define Prio_Led 1
+#define Prio_Led 3
 #define Prio_Sw 1
 #define Prio_Debug 1
 

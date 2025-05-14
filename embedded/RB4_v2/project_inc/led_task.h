@@ -16,6 +16,6 @@
 
 
 void vLedTask(void *pvParameters);
-
+void vStatusTask(void *pvParameters);
 
 #endif /*LED_TASK_H_ */

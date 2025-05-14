@@ -32,7 +32,7 @@ void PID_Init(PIDController_t *pid,
 
 double PID_Compute(PIDController_t *pid,
                    double reference,
-                   double measured_value);
+                   uint16_t measured_value);
 //2 control loops
 //vPanControllerTask
 //vTiltControllerTask
