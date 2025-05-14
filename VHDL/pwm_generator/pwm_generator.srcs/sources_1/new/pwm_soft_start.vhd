@@ -13,9 +13,9 @@ entity pwm_soft_start is
     port (
         clk                 : in  std_logic;
         rst                 : in  std_logic;                
-        target_duty_i       : in  unsigned(WIDTH-1 downto 0); -- desired duty (0 = off)
+        target_duty_i       : in  std_logic_vector(WIDTH-1 downto 0); -- desired duty (0 = off)
         pwm_period_pulse_i  : in  std_logic;                -- pulse at PWM period start
-        duty_o              : out unsigned(WIDTH-1 downto 0); -- ramped duty output
+        duty_o              : out std_logic_vector(WIDTH-1 downto 0); -- ramped duty output
         ready_o             : out std_logic                 -- ‘1’ when duty reaches target
     );
 end entity pwm_soft_start;
@@ -35,7 +35,7 @@ begin
 
             elsif pwm_period_pulse_i = '1' then
                 -- update only at PWM period boundary
-                if target_duty_i = 0 then
+                if unsigned(target_duty_i) = (others => '0') then
                     -- target = 0 → motor off: force duty to zero
                     duty_reg   <= (others => '0');
                     update_cnt <= (others => '0');
@@ -44,15 +44,15 @@ begin
                     if update_cnt = to_unsigned(UPDATE_DIV - 1, update_cnt'length) then
                         update_cnt <= (others => '0');
                         -- step toward target, clamped
-                        if duty_reg < target_duty_i then
-                            if (target_duty_i - duty_reg) < to_unsigned(STEP, WIDTH) then
-                                duty_reg <= target_duty_i;
+                        if duty_reg < unsigned(target_duty_i) then
+                            if (unsigned(target_duty_i) - duty_reg) < to_unsigned(STEP, WIDTH) then
+                                duty_reg <= unsigned(target_duty_i);
                             else
                                 duty_reg <= duty_reg + to_unsigned(STEP, WIDTH);
                             end if;
-                        elsif duty_reg > target_duty_i then
-                            if (duty_reg - target_duty_i) < to_unsigned(STEP, WIDTH) then
-                                duty_reg <= target_duty_i;
+                        elsif duty_reg > unsigned(target_duty_i) then
+                            if (duty_reg - unsigned(target_duty_i)) < to_unsigned(STEP, WIDTH) then
+                                duty_reg <= unsigned(target_duty_i);
                             else
                                 duty_reg <= duty_reg - to_unsigned(STEP, WIDTH);
                             end if;
@@ -65,7 +65,7 @@ begin
         end if;
     end process;
 
-    duty_o  <= duty_reg;
-    ready_o <= '1' when duty_reg = target_duty_i else '0';
+    duty_o  <= std_logic_vector(duty_reg);
+    ready_o <= '1' when duty_reg = unsigned(target_duty_i) else '0';
 
 end architecture rtl;

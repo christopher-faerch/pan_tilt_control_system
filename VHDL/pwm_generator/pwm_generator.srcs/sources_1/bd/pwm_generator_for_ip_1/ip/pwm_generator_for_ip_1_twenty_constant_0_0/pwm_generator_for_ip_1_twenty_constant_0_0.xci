@@ -5,7 +5,7 @@
     "cell_name": "twenty_constant_0",
     "component_reference": "xilinx.com:ip:xlconstant:1.1",
     "ip_revision": "9",
-    "gen_directory": "../../../../../../pwm_generator.gen/sources_1/bd/pwm_generator_for_ip_1/ip/pwm_generator_for_ip_1_twenty_constant_0_0",
+    "gen_directory": "./",
     "parameters": {
       "component_parameters": {
         "Component_Name": [ { "value": "pwm_generator_for_ip_1_twenty_constant_0_0", "resolve_type": "user", "usage": "all" } ],
@@ -33,9 +33,9 @@
         "IPCONTEXT": [ { "value": "IP_Integrator" } ],
         "IPREVISION": [ { "value": "9" } ],
         "MANAGED": [ { "value": "TRUE" } ],
-        "OUTPUTDIR": [ { "value": "../../../../../../pwm_generator.gen/sources_1/bd/pwm_generator_for_ip_1/ip/pwm_generator_for_ip_1_twenty_constant_0_0" } ],
+        "OUTPUTDIR": [ { "value": "./" } ],
         "SELECTEDSIMMODEL": [ { "value": "" } ],
-        "SHAREDDIR": [ { "value": "../../ipshared" } ],
+        "SHAREDDIR": [ { "value": "." } ],
         "SWVERSION": [ { "value": "2024.2" } ],
         "SYNTHESISFLOW": [ { "value": "GLOBAL" } ]
       }
