@@ -50,10 +50,12 @@ int main(void)
         initilization();
         queueSetup();
        // xTaskCreate( vSpiTask,"SPI", 512, NULL, 4, &vSpiTaskHandle);
-        xTaskCreate( vSpiRxTask,"SPI_RX", 512, NULL, 4, &vSpiRxTaskHandle);
-        xTaskCreate( vSpiTxTask,"SPI_TX", 512, NULL, 4, &vSpiTxTaskHandle);
-        xTaskCreate( vPIDControllerTask, "PID_CONTROLLER", 512, NULL, 3, &vPIDControllerTaskHandle);
-        xTaskCreate( vUartTask, "UART_RX",  512, NULL,2, &vUartTaskHandle);
+        xTaskCreate( status_led,          "Status_led",     512, NULL, 4, NULL); 
+        xTaskCreate( vSpiRxTask,          "SPI_RX",         512, NULL, 4, &vSpiRxTaskHandle);
+        xTaskCreate( vSpiTxTask,          "SPI_TX",         512, NULL, 4, &vSpiTxTaskHandle);
+        
+        xTaskCreate( vPIDControllerTask,  "PID_CONTROLLER", 512, NULL, 4, &vPIDControllerTaskHandle);
+        xTaskCreate( vUartTask,           "UART_RX",        512, NULL, 4, &vUartTaskHandle);
         //xTaskCreate( vLedTask, "LED_TASK", 128, NULL, 1, &vLedTaskHandle);
 
 

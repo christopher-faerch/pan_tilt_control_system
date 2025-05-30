@@ -56,4 +56,11 @@ void vLedTask(void *pvParameters)
 }
 
 
+void status_led(void *pvParameters){
+    GPIO_PORTF_DATA_R |= ~(0x0E); //clear LEDS
+    for(;;){
+      GPIO_PORTF_DATA_R ^= 0x02;
+      vTaskDelay( pdMS_TO_TICKS(500) ); //optimal?
+    }
 
+}

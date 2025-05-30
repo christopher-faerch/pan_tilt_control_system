@@ -10,42 +10,42 @@
 extern QueueHandle_t xUart16DebugQueue;
 extern QueueHandle_t xUart8DebugQueue;
 
-void printState(){
-    switch(FSM_STATUS)
-          {
-            case IDLE: //idle ??
-                uart_print(1, "STATE: idle");
-              break;
-            case CTRL: //controller task
-                uart_print(1, "STATE: controller");
-              break;
-            case URTRX: //uart rx task
-                uart_print(1, "STATE: uart receiver");
-              break;
-            case URTTX: //uart tx task
-                uart_print(1, "STATE: uart transmitter");
-              break;
-            case SPIRX: //spi rx task
-                uart_print(1, "STATE: spi receiver");
-              break;
-            case SPITX:  //spi tx task
-                uart_print(1, "STATE: spi transmitter");
-              break;
-            case GFPC: //get frame/unpack from pc
-                uart_print(1, "STATE: get frame from pc");
-              break;
-            case GFFPGA: //get frame/unpack from fpga
-                uart_print(1, "STATE: get from fpga");
-              break;
-            case CFPC: //create frame/unpack from pc
-                uart_print(1, "STATE: send frame to pc");
-              break;
-            case CFFPGA: //create frame/unpack from fpga
-                uart_print(1, "STATE: send frame to fpga");
-              break;
-          }
+// void printState(){
+//     switch(FSM_STATUS)
+//           {
+//             case IDLE: //idle ??
+//                 uart_print(1, "STATE: idle");
+//               break;
+//             case CTRL: //controller task
+//                 uart_print(1, "STATE: controller");
+//               break;
+//             case URTRX: //uart rx task
+//                 uart_print(1, "STATE: uart receiver");
+//               break;
+//             case URTTX: //uart tx task
+//                 uart_print(1, "STATE: uart transmitter");
+//               break;
+//             case SPIRX: //spi rx task
+//                 uart_print(1, "STATE: spi receiver");
+//               break;
+//             case SPITX:  //spi tx task
+//                 uart_print(1, "STATE: spi transmitter");
+//               break;
+//             case GFPC: //get frame/unpack from pc
+//                 uart_print(1, "STATE: get frame from pc");
+//               break;
+//             case GFFPGA: //get frame/unpack from fpga
+//                 uart_print(1, "STATE: get from fpga");
+//               break;
+//             case CFPC: //create frame/unpack from pc
+//                 uart_print(1, "STATE: send frame to pc");
+//               break;
+//             case CFFPGA: //create frame/unpack from fpga
+//                 uart_print(1, "STATE: send frame to fpga");
+//               break;
+//           }
 
-}
+// }
 
 
 void vDebugTask(void *pvParameters) {

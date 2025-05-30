@@ -39,6 +39,7 @@
 #include "uart_task.h"
 #include "status_led.h"
 
+#include "status_led.h"
 //priotity defines
 #define TOP 4
 #define HIGH 3

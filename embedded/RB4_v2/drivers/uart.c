@@ -66,6 +66,30 @@ uint16_t uart0_get16(void) {
     taskEXIT_CRITICAL();
     return (uint16_t)((hi << 8) | lo);
 }
+
+
+int uart0_getc_nonblocking(uint8_t* byte_out) {
+    // UART0_FR_R = UART0 Flag Register
+    // UART_FR_RXFE = a bit inside UART0_FR_R indicating weather or not the FIFO is empty
+
+    if (!(UART0_FR_R & UART_FR_RXFE)) {  // RXFE = 1 means FIFO is empty
+        *byte_out = (uint8_t)(UART0_DR_R & 0xFF);
+        return 1;
+    }
+    return 0;
+}
+
+uint16_t uart0_get16_nonblocking(void) {
+    uint8_t hi, lo;
+
+    if (!uart0_getc_nonblocking(&hi)) return 0xFFFF;
+    if (!uart0_getc_nonblocking(&lo)) return 0xFFFF;
+
+    return (uint16_t)((hi << 8) | lo);
+}
+
+
+
 void uart0_send16(uint16_t v) {
     uart0_putc((uint8_t)(v & 0xFF));
     uart0_putc((uint8_t)(v >> 8));

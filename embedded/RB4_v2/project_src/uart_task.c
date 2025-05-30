@@ -25,7 +25,7 @@ void vUartTask(void *pv) {
             uart1_print("\r\n<<<UART_TASK>>>\r\n");
             FSM_STATUS = UART;
 
-            VisionFrame = uart0_get16();
+            VisionFrame = uart0_get16_nonblocking();
 
 
             UnpackFrame(&VisionFrame, &panVal, &tiltVal);

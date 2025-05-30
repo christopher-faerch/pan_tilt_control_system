@@ -18,5 +18,6 @@ void LedDriver();
 
 void vLedTask(void *pvParameters);
 
+void status_led(void *pvParameters);
 
 #endif /*STATUS_LED_H_ */

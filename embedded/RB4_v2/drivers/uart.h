@@ -34,4 +34,8 @@ void    uart1_send16(uint16_t v);
 void    uart1_print(const char *fmt, ...);
 
 const char *rx_binary_string(uint16_t v);
+
+uint16_t uart0_get16_nonblocking(void);
+int uart0_getc_nonblocking(uint8_t* byte_out);
+
 #endif /* DRIVERS_UART_H_ */
